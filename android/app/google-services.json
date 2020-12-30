@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "470981914137",
+    "project_id": "fotodio-210ca",
+    "storage_bucket": "fotodio-210ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470981914137:android:00f5675d416392ffdb0488",
+        "android_client_info": {
+          "package_name": "com.example.fotodio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470981914137-h81pc5om262164u836kdotcroanlfbr9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fotodio",
+            "certificate_hash": "8a043124c68b7ad90247f91826a9c0bcafac17de"
+          }
+        },
+        {
+          "client_id": "470981914137-phcs8uembskhj31v8m3sas163043eilq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0u4ZSjZt-ALMXcoAnRB2kas0idvK3wyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470981914137-phcs8uembskhj31v8m3sas163043eilq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
