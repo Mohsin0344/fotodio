@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fotodio/Models/SignUpModel.dart';
 import 'package:fotodio/Screens/ImagePickerScreen.dart';
 import 'package:pinput/pin_put/pin_put.dart';
+import 'package:http/http.dart' as http;
 
 class OTPScreen extends StatefulWidget {
   final String phone;
@@ -10,7 +12,22 @@ class OTPScreen extends StatefulWidget {
   _OTPScreenState createState() => _OTPScreenState();
 }
 
+Future<SignUp> createUser(String mobile) async{
+  final String apiUrl = "http://fotod.io/api/signup";
+  final response = await http.post(apiUrl, body: {
+    "mobile": mobile
+  });
+
+  if(response.statusCode == 200){
+    final String responseString = response.body;
+    return signUpFromJson(responseString);
+  }else {
+    return null;
+  }
+}
+
 class _OTPScreenState extends State<OTPScreen> {
+  SignUp _userId;
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   String _verificationCode;
   final TextEditingController _pinPutController = TextEditingController();
@@ -86,6 +103,8 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   _verifyPhone() async {
+
+
     await FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: '+92${widget.phone}',
         verificationCompleted: (PhoneAuthCredential credential) async {
@@ -93,6 +112,17 @@ class _OTPScreenState extends State<OTPScreen> {
               .signInWithCredential(credential)
               .then((value) async {
             if (value.user != null) {
+
+              SignUp userid=await createUser(value.user.phoneNumber);
+
+              print(userid.status);
+
+              setState(() {
+
+                _userId=userid;
+
+              });
+              print("${_userId.user[0].userId}");
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => ImagePickerScreen()),
